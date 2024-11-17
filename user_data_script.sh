@@ -1,28 +1,38 @@
 #!/bin/bash -ex
-# output user data logs into a separate file for debugging
-exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-# download nvm
+# Output user data logs into a separate file for debugging
+exec > >(tee /var/log/user-data.log | logger -t user-data -s 2>/dev/console) 2>&1
+
+# Download NVM (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-# source nvm
-. /.nvm/nvm.sh
-# install node
+
+# Source NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Install Node.js
 nvm install node
-#export NVM dir
-export NVM_DIR="/.nvm"	
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"	
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
-#upgrade yum
-sudo yum upgrade
-#install git
+
+# Upgrade system packages
+sudo yum upgrade -y
+
+# Install Git
 sudo yum install git -y
+
+# Change to home directory
 cd /home/ec2-user
-# get source code from githubt
-git clone https://github.com/Pranav10ss/auto-scaling-nodejs-app
-#get in project dir
+
+# Clone your GitHub repository
+git clone https://github.com/Pranav10ss/auto-scaling-nodejs-app.git
+
+# Navigate to the project directory
 cd auto-scaling-nodejs-app
-#give permission
+
+# Give permission to execute files
 sudo chmod -R 755 .
-#install node module
+
+# Install Node.js dependencies
 npm install
-# start the app
+
+# Start the application
 node app.js > app.out.log 2> app.err.log < /dev/null &
