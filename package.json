@@ -1,8 +1,22 @@
 {
-  "name": "auto-scaling-nodejs-app",
+  "name": "cc-auto-scaling-demo",
   "version": "1.0.0",
-  "author": "Pranav10ss",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pranav10ss/auto-scaling-nodejs-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pranav10ss/auto-scaling-nodejs-app/issues"
+  },
+  "homepage": "https://github.com/CumulusCycles/auto-scaling-nodejs-app#readme",
   "dependencies": {
-    "express": "4.17.1"
+    "express": "^4.18.1"
   }
 }
