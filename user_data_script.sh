@@ -14,8 +14,8 @@ sudo yum upgrade -y
 sudo yum install git -y
 
 cd /home/ec2-user
-git clone https://YOUR_REPO_HERE
-cd YOUR_REPO_DIR_HERE
+git clone https://github.com/Pranav10ss/auto-scaling-nodejs-app
+cd auto-scaling-nodejs-app
 sudo chmod -R 755 .
 npm install
 
