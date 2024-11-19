@@ -40,13 +40,17 @@ We need to add a custom TCP rule on Port 3000 because that's the Port app runs o
 ## 🔍Testing
 * Once the instances are up and running you can grab its public IPv4 address and the port 3000 and check if the app is running properly. If the Ipv4 address is 54.236.29.52, add the port 3000 to it. For example, `54.236.29.52:3000`. If everything is configured well you can see the app's page display without a problem.
 * You can test the second instance in the same way.
-* Go to Load balancer-> copy its DNS name and hit that in a browser by targetting it to port 3000. We can also ange the listner of the load balancer from 3000 to port 80 for it to work.
-   ### Testing the Auto Scaling of EC2 instances
+* Go to Load balancer-> copy its DNS name and hit that in a browser by targetting it to port 3000. We can also ange the listner of the load balancer from 3000 to port 80 for 
+  it to work.
+  
+  ### Testing the Auto Scaling of EC2 instances
       * Terminate one of the instances. If you see the browser with IP address of the terminated instance, you can see that the requested is timed out because the server is
         down.
-      * Since the minimum capacity was set to 2, the ASG will spin up a new EC2 instance in order to meet the requirement. Once the new instance is successfully running, you can check its IPv4 adress by targetting it to port 3000 to check whether the app is running.
+      * Since the minimum capacity was set to 2, the ASG will spin up a new EC2 instance in order to meet the requirement. Once the new instance is successfully running, you
+        can check its IPv4 adress by targetting it to port 3000 to check whether the app is running.
   ### Adding some load to the existing instances to trigger the scaling policies and add an extra instance
       * SSH into one of the servers and execute the following commands to add stress.
+  
 The below command installs extra package on a Amazon Linux instance.
   ```
   sudo amazon-linux-extras install epel -y
