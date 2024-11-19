@@ -25,6 +25,7 @@ The project was implemented with the following AWS services:
   2. HTTP ----------- Port 80 ----------- Source: Anywhere(0.0.0.0/0)
   3. HTTPS ---------- Port 443 ---------- Source: Anywhere(0.0.0.0/0)
   4. Custom --------- Port 3000 --------- Source: Anywhere(0.0.0.0/0)
+  
 We need to add a custom TCP rule on Port 3000 because that's the Port app runs on.
 ### Step 2 - Create Launch template to automate the EC2 instance launch process
 * Select an AMI and select the instance type as t2.micro
