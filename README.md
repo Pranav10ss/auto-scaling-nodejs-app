@@ -29,4 +29,9 @@ We need to add a custom TCP rule on Port 3000 because that's the Port app runs o
 ### Step 2 - Create Launch template to automate the EC2 instance launch process
 * Select an AMI and select the instance type as t2.micro
 * In network settings, select the security group that you created.
-* Under advanced detailsUse the User Data script (included in the repo) to install necessary dependencies like Git and Node.js, clone the app code, install dependencies, and start the app.
+* Under `advanced details`, Use the **User Data script** (included in the repo) to install necessary dependencies like Git and Node.js, clone the app code, install dependencies, and start the app.
+* After pasting the user data script in the userdata section, click on create template.
+### Step 3 - Create an Auto Scaling group
+* Select the **Launch template** that you created. Select the Version of LT as `Latest(1)`. Under Network Settings, choose the default VPC and select the AZs and subnets. Select the following AZs: `us-east-1a`, `us-east-1b`, `us-east-1c`
+* Under Advanced options, Attach a **new load balancer** and choose Application load balancer. Select the load balancer scheme as **Internet-facing**. Change the Listner Port to `3000`. Create a **target group** for the load balancer to route/forward the incoming traffic to instances.
+* Configure the Auto scaling group's size and scaling policies. 
