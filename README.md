@@ -62,7 +62,7 @@ The below command installs extra package on a Amazon Linux instance.
   ```
   sudo stress --cpu 2
   ```
-  After executing the above commands, if you check the **monitoring** tab of any instance you'll see the CPU utilization going up. Once the CPU Utilization(%) crosses 25% thw ASG scaling policy will trigger & increases the instance count from 2 to 3(Maximum capacity). Now theres 3 instances running in each availability zones.
+  After executing the above commands, if you check the **monitoring** tab of any instance you'll see the CPU utilization going up. Once the CPU Utilization(%) crosses 25% the ASG scaling policy will trigger & increases the instance count from 2 to 3(Maximum capacity). Now theres 3 instances running in each availability zones.
 
 ## Conclusion
 This project demonstrates how to automatically scale a **Node.js** application on AWS using EC2, ALB, and ASG. It shows how AWS services like Auto Scaling and Load Balancers can ensure high availability and performance for your application.
