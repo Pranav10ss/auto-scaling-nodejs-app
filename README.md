@@ -34,4 +34,31 @@ We need to add a custom TCP rule on Port 3000 because that's the Port app runs o
 ### Step 3 - Create an Auto Scaling group
 * Select the **Launch template** that you created. Select the Version of LT as `Latest(1)`. Under Network Settings, choose the default VPC and select the AZs and subnets. Select the following AZs: `us-east-1a`, `us-east-1b`, `us-east-1c`
 * Under Advanced options, Attach a **new load balancer** and choose Application load balancer. Select the load balancer scheme as **Internet-facing**. Change the Listner Port to `3000`. Create a **target group** for the load balancer to route/forward the incoming traffic to instances.
-* Configure the Auto scaling group's size and scaling policies. 
+* Configure the Auto scaling group's size and scaling policies. Set the **Desired capacity** as `2`, **Minimum capacity** as `2` and **maximum capacity** as `3`.
+* Choose **Target tracking scaling policy** and select the **Metric type** as `Avg. CPU Utilization`. Set the **Target value** as `25%` to trigger scaling actions.
+## Testing
+* Once the instances are up and running you can grab its public IPv4 address and the port 3000 and check if the app is running properly. If the Ipv4 address is 54.236.29.52, add the port 3000 to it. For example, `54.236.29.52:3000`. If everything is configured well you can see the app's page display without a problem.
+* You can test the second instance in the same way.
+* Go to Load balancer-> copy its DNS name and hit that in a browser by targetting it to port 3000. We can also ange the listner of the load balancer from 3000 to port 80 for it to work.
+   ### Testing the Auto Scaling of EC2 instances
+      * Terminate one of the instances. If you see the browser with IP address of the terminated instance, you can see that the requested is timed out because the server is
+        down.
+      * Since the minimum capacity was set to 2, the ASG will spin up a new EC2 instance in order to meet the requirement. Once the new instance is successfully running, you can check its IPv4 adress by targetting it to port 3000 to check whether the app is running.
+  ### Adding some load to the existing instances to trigger the scaling policies and add an extra instance
+      * SSH into one of the servers and execute the following commands to add stress.
+  The below command installs extra package on a Amazon Linux instance.
+  ```
+  sudo amazon-linux-extras install epel -y
+  ```
+  The below command Installs the stress utility from the EPEL repository.
+  ```
+  sudo yum install stress -y
+  ```
+  The below command Starts the stress utility to put load on the system's CPU.
+  ```
+  sudo stress --cpu 2
+  ```
+  After executing the above commands, if you check the **monitoring** tab of any instance you'll see the CPU utilization going up. Once the CPU Utilization(%) crosses 25% thw ASG scaling policy will trigger & increases the instance count from 2 to 3(Maximum capacity). Now theres 3 instances running in each availability zones.
+
+## Conclusion
+This project demonstrates how to automatically scale a **Node.js** application on AWS using EC2, ALB, and ASG. It shows how AWS services like Auto Scaling and Load Balancers can ensure high availability and performance for your application.
