@@ -36,7 +36,7 @@ We need to add a custom TCP rule on Port 3000 because that's the Port app runs o
 * Under Advanced options, Attach a **new load balancer** and choose Application load balancer. Select the load balancer scheme as **Internet-facing**. Change the Listner Port to `3000`. Create a **target group** for the load balancer to route/forward the incoming traffic to instances.
 * Configure the Auto scaling group's size and scaling policies. Set the **Desired capacity** as `2`, **Minimum capacity** as `2` and **maximum capacity** as `3`.
 * Choose **Target tracking scaling policy** and select the **Metric type** as `Avg. CPU Utilization`. Set the **Target value** as `25%` to trigger scaling actions.
-## Testing
+## 🔍Testing
 * Once the instances are up and running you can grab its public IPv4 address and the port 3000 and check if the app is running properly. If the Ipv4 address is 54.236.29.52, add the port 3000 to it. For example, `54.236.29.52:3000`. If everything is configured well you can see the app's page display without a problem.
 * You can test the second instance in the same way.
 * Go to Load balancer-> copy its DNS name and hit that in a browser by targetting it to port 3000. We can also ange the listner of the load balancer from 3000 to port 80 for it to work.
