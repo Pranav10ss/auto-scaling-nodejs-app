@@ -46,7 +46,7 @@ We need to add a custom TCP rule on Port 3000 because that's the Port app runs o
       * Since the minimum capacity was set to 2, the ASG will spin up a new EC2 instance in order to meet the requirement. Once the new instance is successfully running, you can check its IPv4 adress by targetting it to port 3000 to check whether the app is running.
   ### Adding some load to the existing instances to trigger the scaling policies and add an extra instance
       * SSH into one of the servers and execute the following commands to add stress.
-  The below command installs extra package on a Amazon Linux instance.
+The below command installs extra package on a Amazon Linux instance.
   ```
   sudo amazon-linux-extras install epel -y
   ```
